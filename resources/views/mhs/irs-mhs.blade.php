@@ -213,7 +213,7 @@
         <p>NIM 24060122100102</p>
         <p class="role">Mahasiswa</p>
       </div>
-      <button class="logout">Logout</button>
+      <a href="{{ url('/') }}"  class="logout">Logout</a>
     </div>
     <ul>
       <li><a href="dashboard-mhs">Dashboard</a></li>

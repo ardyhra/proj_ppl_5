@@ -7,36 +7,69 @@
     @vite('resources/css/app.css')
     <title>SISKARA Dashboard Doswal</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Animasi untuk sidebar */
+        .sidebar {
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-closed {
+            transform: translateX(-100%);
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100 font-sans">
-
+    <!-- Header -->
+    <header class="bg-blue-700 text-white p-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <!-- Tombol menu untuk membuka sidebar -->
+            <button onclick="toggleSidebar()" class="focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            <!-- Logo dan judul aplikasi -->
+            <h1 class="text-xl font-bold">SISKARA</h1>
+        </div>
+        <nav class="space-x-4">
+            <a href="{{ url('/') }}" class="hover:underline">Home</a>
+            <a href="{{ url('/about') }}" class="hover:underline">About</a>
+        </nav>
+    </header>
+    
     <!-- Sidebar -->
     <div class="flex">
-        <aside class="w-1/5 bg-blue-500 h-screen p-4 text-white">
+        <aside id="sidebar" class="sidebar w-1/5 bg-blue-500 h-screen p-4 text-white sidebar-closed fixed lg:static">
             <!-- profil -->
             <div class="p-3 pb-1 bg-gray-300 rounded-3xl text-center mb-6">
                 <div class="w-24 h-24 mx-auto bg-gray-400 rounded-full mb-3"></div>
                 <h2 class="text-lg text-black font-bold">Ucok, S.Kom</h2>
                 <p class="text-xs text-gray-800">NIP 123456789</p>
                 <p class="text-sm bg-blue-600 rounded-full px-3 py-1 mt-2">Dosen</p>
-                <button class="text-sm w-full bg-red-700 py-1 rounded-full mb-4 mt-2">Logout</button>
+                <a href="{{ route('login') }}" class="text-sm w-full bg-red-700 py-1 rounded-full mb-4 mt-2 text-center block">Logout</a>
             </div>
             <nav class="space-y-4">
-                <a href="{{ url('/dashboard-doswal') }}" class="flex items-center space-x-2 p-2 bg-gray-300 rounded-xl text-gray-700">
+                <a href="{{ url('/dashboard-doswal') }}"
+                    class="flex items-center space-x-2 p-2 bg-gray-300 rounded-xl text-gray-700">
                     <span>Dashboard</span>
                 </a>
-                <a href="{{ url('/persetujuanIRS-doswal') }}" class="flex items-center space-x-2 p-2 bg-gray-300 rounded-xl text-gray-700">
+                <a href="{{ url('/persetujuanIRS-doswal') }}"
+                    class="flex items-center space-x-2 p-2 bg-gray-300 rounded-xl text-gray-700">
                     <span>Persetujuan IRS</span>
                 </a>
-                <a href="{{ url('/rekap-doswal') }}" class="flex items-center space-x-2 p-2 bg-gray-300 rounded-xl text-gray-700">
+                <a href="{{ url('/rekap-doswal') }}"
+                    class="flex items-center space-x-2 p-2 bg-gray-300 rounded-xl text-gray-700">
                     <span>Rekap Mahasiswa</span>
                 </a>
-                <a href="{{ url('/nilai-doswal') }}" class="flex items-center space-x-2 p-2 bg-gray-700 rounded-xl text-white">
+                <a href="{{ url('/nilai-doswal') }}"
+                    class="flex items-center space-x-2 p-2 bg-gray-700 rounded-xl text-white">
                     <span>Nilai</span>
                 </a>
             </nav>
         </aside>
+
 
         <!-- Main Content -->
         <main class="w-3/4 p-8">
@@ -74,6 +107,12 @@
         </div>
     </footer>
 
+    <!-- Script untuk toggle sidebar -->
+    <script>
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('sidebar-closed');
+        }
+    </script>
 </body>
 
 </html>
